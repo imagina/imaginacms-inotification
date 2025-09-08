@@ -95,7 +95,7 @@ http://exampleurl.com/inotification/v1/preview-email?email=example@email.com
 
 You can also use a module's config to load a specific view with its data.
 ```php
-http://exampleurl.com/inotification/v1/preview-email?config=imodule.entityTestEmail
+http://exampleurl.com/inotification/v1/preview-email?config=imodule.entityTestEmail&entityId=6
 ```
 
 Important: Only works for the LOCAL environment

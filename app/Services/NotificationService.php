@@ -21,8 +21,16 @@ class NotificationService
         if ($config) {
             $dataFromConfig = config($config);
             if (isset($dataFromConfig['extraParams'])) {
+
+                $resolvedParams = [];
                 foreach ($dataFromConfig['extraParams'] as $key => $value) {
-                    $resolvedParams[$key] = is_callable($value) ? $value() : $value;
+                    if (is_array($value) && isset($value['entity'], $value['param'])) {
+                        $id = $request->query($value['param']);
+                        $entityClass = $value['entity'];
+                        $resolvedParams[$key] = $id ? $entityClass::find($id) : null;
+                    } else {
+                        $resolvedParams[$key] = $value;
+                    }
                 }
                 $dataFromConfig['extraParams'] = $resolvedParams;
             }
@@ -33,8 +41,11 @@ class NotificationService
             'message' => itrans("inotification::notification.email.default.message")
         ];
 
-        if (isset($dataFromConfig))
+        if (isset($dataFromConfig)) {
+            $dataFromConfig['title'] = itrans($dataFromConfig['title']);
             $data = array_merge($dataDefault, $dataFromConfig);
+        }
+
 
         //Validation to Send Email
         if ($to) {
@@ -42,7 +53,11 @@ class NotificationService
             if (!filter_var($to, FILTER_VALIDATE_EMAIL)) {
                 return response()->json(['error' => 'Invalid Email'], Response::HTTP_UNPROCESSABLE_ENTITY);
             }
-            app(NotificationDispatcherService::class)->execute(['email' => $to]);
+
+            $dataToSend = isset($data) ? $data : $dataDefault;
+            $dataToSend['email'] = $to;
+
+            app(NotificationDispatcherService::class)->execute($dataToSend);
         }
 
         return $data ?? $dataDefault;
