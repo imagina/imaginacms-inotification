@@ -78,7 +78,7 @@
       -->
       <tr align="center">
         <td align="center" style="padding-bottom: 20px;">
-          <a href="{{ env('APP_URL', url('')) }}" target="_blank" style="text-decoration:none;">
+          <a href="{{ urlFrontend() }}" target="_blank" style="text-decoration:none;">
             <p style="font-size:13.5px; line-height:1.4; font-weight:400; color:#212529; margin:0;text-align:center;">
               <span style="color:{{ setting('isite::brandPrimary') }}; font-weight:600;">
                 ©{{ date("Y") }} - <b><em>{{setting('isite::siteName')}}</em></b>
@@ -94,10 +94,10 @@
             <tr>
               <td align="center"
                   style="font-size:13.5px; line-height:1.4; font-weight:400; color:#212529; margin:0;text-align:center;">
-                <a href="{{ env('APP_URL', url('')) }}" target="_blank"
+                <a href="{{ urlFrontend() }}" target="_blank"
                    style="font-size:13.5px;line-height:1.4;font-weight:600;color:#212529;margin:0;text-align:center;"
                    title="Visitar sitio">
-                  {{trans("inotification::notification.email.date.from")}}: {{ env('APP_URL', url('')) }}
+                  {{trans("inotification::notification.email.date.from")}}: {{ urlFrontend() }}
                 </a>
               </td>
             </tr>

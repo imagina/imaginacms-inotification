@@ -12,7 +12,7 @@
               LOGO
               -->
               <td align="left" valign="middle" width="50%" style="padding: 10px 0;">
-                <a href="{{ env('APP_URL', url('')) }}" target="_blank" style="display: inline-block;">
+                <a href="{{urlFrontend() }}" target="_blank" style="display: inline-block;">
                   <img src="{{setting('isite::logo1')}}" alt="{{setting('core::site-name-mini')}}" width="120"
                        height="65"
                        style="display:block; width:120px; height:65px; object-fit:contain; object-position:left; border:0; outline:none; text-decoration:none;">
