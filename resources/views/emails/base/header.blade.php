@@ -1,24 +1,31 @@
 <tr>
   <td align="center" style="padding: 0;">
     <table role="presentation" width="700" cellpadding="0" cellspacing="0" border="0"
-           style="border-collapse: collapse;overflow: hidden; background-color: #ffffff;">
+      style="border-collapse: collapse;overflow: hidden; background-color: #ffffff;">
       <tr>
         <td align="center" style="padding: 13px 25px 13px 25px;">
           <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" align="center"
-                 bgcolor="#fff" height="100%"
-                 style="border-collapse:collapse;font-family:'Open Sans', sans-serif,Arial, sans-serif, 'Segoe UI Symbol', Symbol;">
+            bgcolor="#fff" height="100%"
+            style="border-collapse:collapse;font-family:'Open Sans', sans-serif,Arial, sans-serif, 'Segoe UI Symbol', Symbol;">
             <tr>
               <!--
               LOGO
               -->
+              @php
+                //TODO - Esto toca mejorarlo.
+                $logoUrl = setting('isite::logo1');
+                if ($logoUrl instanceof \stdClass) {
+                  $logoUrl = "";
+                }
+
+              @endphp
               <td align="left" valign="middle" width="50%" style="padding: 10px 0;">
                 <a href="{{urlFrontend() }}" target="_blank" style="display: inline-block;">
-                  <img src="{{setting('isite::logo1')}}" alt="{{setting('core::site-name-mini')}}" width="120"
-                       height="65"
-                       style="display:block; width:120px; height:65px; object-fit:contain; object-position:left; border:0; outline:none; text-decoration:none;">
+                  <img src="{{$logoUrl}}" alt="{{setting('core::site-name-mini')}}" width="120" height="65"
+                    style="display:block; width:120px; height:65px; object-fit:contain; object-position:left; border:0; outline:none; text-decoration:none;">
                 </a>
               </td>
-              
+
               <!--
               DATE
               -->
