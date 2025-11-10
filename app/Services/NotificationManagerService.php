@@ -264,7 +264,8 @@ class NotificationManagerService
                 (view()->exists($view) ? $view : $defaultContent),
                 $this->data["fromAddress"] ?? $this->provider->fields->fromAddress ?? null,
                 $this->data["fromName"] ?? $this->provider->fields->fromName ?? null,
-                $this->data["replyTo"] ?? []
+                $this->data["replyTo"] ?? [],
+                attachment: $this->data['attachment'] ?? null
             );
 
             //Send
